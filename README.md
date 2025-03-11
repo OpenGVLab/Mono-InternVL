@@ -4,31 +4,31 @@
 
 <a id="radar"></a>
 
-![image/png](images/fig1.jpg)
+<p align="center">
+<img src="images/fig1.jpg" alt="radar chart" style="width: 70%; height: auto;" />
 
-![image/png](images/fig2.jpg)
+<img src="images/fig2.jpg" alt="architecture" style="width: 70%; height: auto;" />
+</p>
 
-## News🔥🔥🔥
+## 📰 News
 - **2025.3**: We release the SFT code on LLaVA-v1.5-mix665k dataset.
 - **2025.2**: 🎉🎉 Mono-InternVL is accepted by **CVPR 2025**.
 - **2024.11**: Mono-InternVL is supported by [lmdeploy](https://github.com/InternLM/lmdeploy/pull/2727).
 - **2024.11**: Mono-InternVL is supported by [vllm](https://github.com/vllm-project/vllm/pull/9528).
 
 
-## Introduction
+## ⭐️ Introduction
 
-We release Mono-InternVL, a **monolithic** multimodal large language model (MLLM) that integrates visual encoding and textual decoding into a single LLM. In Mono-InternVL, a set of visual experts is embedded into the pre-trained LLM via a mixture-of-experts (MoE) mechanism. By freezing the LLM, Mono-InternVL ensures that visual capabilities are optimized without compromising the pre-trained language knowledge. Based on this structure, an innovative Endogenous Visual Pretraining (EViP) is introduced to realize coarse-to-fine visual learning.
-
+We release Mono-InternVL, a **monolithic** multimodal large language model (MLLM) that integrates visual encoding and textual decoding into a single LLM. In Mono-InternVL, a set of visual experts is embedded into the pre-trained LLM via a **mixture-of-experts (MoE) mechanism**. By freezing the LLM, Mono-InternVL ensures that visual capabilities are optimized without compromising the pre-trained language knowledge. Based on this structure, an innovative **Endogenous Visual Pretraining (EViP)** is introduced to realize coarse-to-fine visual learning.
 
 
 Mono-InternVL achieves superior performance compared to state-of-the-art MLLM Mini-InternVL-2B-1.5 and significantly outperforms other monolithic MLLMs, as shown in the [radar chart](#radar) above. Meanwhile, it achieves better deployment efficiency, with first token latency reduced by up to 67%.
 
 
+For more details, please refer to our [paper](https://arxiv.org/abs/2410.08202).
 
-This repository contains the instruction-tuned Mono-InternVL-2B model, which has 1.8B activated parameters (3B in total). It is built upon [internlm2-chat-1_8b](https://huggingface.co/internlm/internlm2-chat-1_8b). For more details, please refer to our [paper](https://arxiv.org/abs/2410.08202).
 
-
-## Performance
+## 📊 Performance
 |          Benchmark           | Chameleon-7B | EVE-7B (HD) |    Emu3    | Mini-InternVL-2B-1-5 | Mono-InternVL-2B |
 | :--------------------------: | :----------: | :---------: | :--------: | :------------------: | :--------------: |
 |             Type             |  Monolithic  | Monolithic  | Monolithic |       Modular        |    Monolithic    |
@@ -54,19 +54,19 @@ This repository contains the instruction-tuned Mono-InternVL-2B model, which has
 |    InfoVQA<sub>test</sub>    |     5.0      |    25.0     |    43.8    |         55.4         |       43.0       |
 |      Avg<sub>VQA</sub>       |     17.9     |    54.6     |    67.6    |         71.7         |       70.1       |
 
-- Sources of the results include the original papers, our evaluation with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit), and [OpenCompass](https://rank.opencompass.org.cn/leaderboard-multimodal/?m=REALTIME).
-- Average scores are computed by normalizing each metric to a range between 0 and 100.
-- Please note that evaluating the same model using different testing toolkits can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
+> * Sources of the results include the original papers, our evaluation with [VLMEvalKit](https://github.com/open-compass/VLMEvalKit), and [OpenCompass](https://rank.opencompass.org.cn/leaderboard-multimodal/?m=REALTIME).
+> * Average scores are computed by normalizing each metric to a range between 0 and 100.
+> * Please note that evaluating the same model using different testing toolkits can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
 
 
-## Inference
+## 🚀 Inference
 
 We provide an example code to run Mono-InternVL-2B inference using `transformers`.
 
 > Please use transformers==4.37.2 to ensure the model works normally.
 
-
-### Inference with Transformers
+<details>
+<summary>Inference with Transformers (click to expand)</summary>
 
 ```python
 import numpy as np
@@ -164,7 +164,7 @@ tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast
 pixel_values = load_image('./examples/image1.jpg', max_num=12).to(torch.bfloat16).cuda()
 generation_config = dict(max_new_tokens=1024, do_sample=True)
 
-# pure-text conversation (纯文本对话)
+# pure-text conversation
 question = 'Hello, who are you?'
 response, history = model.chat(tokenizer, None, question, generation_config, history=None, return_history=True)
 print(f'User: {question}\nAssistant: {response}')
@@ -188,7 +188,11 @@ response, history = model.chat(tokenizer, pixel_values, question, generation_con
 print(f'User: {question}\nAssistant: {response}')
 ```
 
-### Inference with LMDeploy
+</details>
+
+
+<details>
+<summary>Inference with LMDeploy</summary>
 
 Please install lmdeploy>=0.6.3 for Mono-InternVL support.
 
@@ -201,13 +205,14 @@ pipe = pipeline('OpenGVLab/Mono-InternVL-2B')
 response = pipe(('Please describe the image shortly.', image))
 print(response.text)
 ```
+</details>
 
 ## 🔥 Supervised Finetuning
 
 Currently we provide the supervised finetuning (S2 instruction tuning) code on the LLaVA-v1.5-mix665k dataset. For details on the dataset, please refer to [LLaVA-v1.5](https://github.com/haotian-liu/LLaVA).
 
-
-### 🛠️ Installation
+<details>
+<summary>Installation</summary>
 
 - Clone this repository:
 
@@ -242,8 +247,11 @@ Currently we provide the supervised finetuning (S2 instruction tuning) code on t
   git checkout v2.5.6
   python setup.py install
   ```
+</details>
 
-### Prepare Training Datasets
+<details>
+<summary>Training Dataset Preparation</summary>
+
 
 1. Download instruction tuning data:
 ```sh
@@ -251,7 +259,7 @@ mkdir playground
 wget https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/resolve/main/llava_v1_5_mix665k.json -P playground/
 ```
 
-2. Download image datasets:
+1. Download image datasets:
 
 - COCO: [train2017](http://images.cocodataset.org/zips/train2017.zip)
 - GQA: [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip)
@@ -273,9 +281,10 @@ playground/
 │       └── VG_100K_2/
 └── llava_v1_5_mix665k.json
 ```
+</details>
 
-
-### 📦 Model Preparation
+<details>
+<summary>Model Preparation</summary>
 
 Our models are built from Mono-InternVL series. 
 Choose from the following model versions and download the weights to `workdirs/` folder.
@@ -303,8 +312,10 @@ workdirs/
 ├── Mono-InternVL-2B-S1.2/
 └── Mono-InternVL-2B-S1.3/
 ```
+</details>
 
-### Start Training
+<details>
+<summary>Training</summary>
 
 You can use 8 GPUs to finetune the model, and it will take approximately 12 hours.
 
@@ -318,6 +329,8 @@ PARTITION='your partition' sh shell/internlm2ve_1_8b_dynamic/Mono_internvl_dynam
 sh internlm2ve_1_8b_dynamic/Mono_internvl_dynamic_res_finetune_llava_torchrun.sh
 ```
 
+</details>
+
 
 ## 🎫 License
 
@@ -325,7 +338,7 @@ This project is released under the [MIT License](LICENSE).
 
 ## 🖊️ Citation
 
-If you find this work helpful in your research, please consider citing:
+If you find this work helpful in your research, please consider giving this repo a star ⭐ and citing our paper:
 
 ```bibtex
 @article{luo2024mono,
