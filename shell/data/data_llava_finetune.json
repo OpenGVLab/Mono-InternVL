@@ -1,0 +1,9 @@
+{
+  "llava_665k": {
+    "root": "playground/data/",
+    "annotation": "playground/llava_v1_5_mix665k.jsonl",
+    "data_augment": false,
+    "repeat_time": 1,
+    "length": 665298
+  }
+}
