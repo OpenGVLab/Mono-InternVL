@@ -16,7 +16,7 @@ torchrun --nproc_per_node=$GPUS --master_port=29501 \
   --vision_type patch \
   --conv_style "internlm2-chat" \
   --output_dir ${OUTPUT_DIR} \
-  --meta_path "./shell/data/data_llava_finetune.json" \
+  --meta_path "./shell/data_llava_finetune.json" \
   --overwrite_output_dir True \
   --force_image_size 448 \
   --max_dynamic_patch 6 \
@@ -50,5 +50,5 @@ torchrun --nproc_per_node=$GPUS --master_port=29501 \
   --dynamic_image_size True \
   --use_thumbnail True \
   --ps_version 'v2' \
-  --deepspeed "zero_stage1_config.json" \
+  --deepspeed "./shell/zero_stage1_config.json" \
   2>&1 | tee -a "${OUTPUT_DIR}/training_log.txt"
