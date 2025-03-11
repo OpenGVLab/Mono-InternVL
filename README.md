@@ -5,9 +5,9 @@
 <a id="radar"></a>
 
 <p align="center">
-<img src="images/fig1.jpg" alt="radar chart" style="width: 70%; height: auto;" />
+<img src="images/fig1.jpg" alt="radar chart" style="width: 100%; height: auto;" />
 
-<img src="images/fig2.jpg" alt="architecture" style="width: 70%; height: auto;" />
+<img src="images/fig2.jpg" alt="architecture" style="width: 100%; height: auto;" />
 </p>
 
 ## 📰 News
@@ -319,14 +319,14 @@ workdirs/
 
 You can use 8 GPUs to finetune the model, and it will take approximately 12 hours.
 
-#### Slurm Cluster
-```sh
-# using 8 GPUs
-PARTITION='your partition' sh shell/internlm2ve_1_8b_dynamic/Mono_internvl_dynamic_res_finetune_llava.sh
-```
 #### Single Node Multi-GPU
 ```sh
-sh internlm2ve_1_8b_dynamic/Mono_internvl_dynamic_res_finetune_llava_torchrun.sh
+sh shell/mono_internvl_finetune_llava_torchrun.sh
+```
+
+#### Slurm Cluster
+```sh
+PARTITION='your partition' sh shell/mono_internvl_finetune_llava_slurm.sh
 ```
 
 </details>
