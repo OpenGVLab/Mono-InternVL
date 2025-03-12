@@ -286,8 +286,8 @@ playground/
 <details>
 <summary>Model Preparation</summary>
 
-Our models are built from Mono-InternVL series. 
-Choose from the following model versions and download the weights to `workdirs/` folder.
+We provide pretrained models of different stages (S1.1 concept learning, S1.2 semantic learning, S1.3 alignment learning).
+Choose from the following models and download the weights to `workdirs/` folder.
 
 
 | model name              | download                                                               |  size  |
@@ -308,25 +308,26 @@ The directory structure is:
 
 ```sh
 workdirs/
-├── Mono-InternVL-2B-S1.1/
-├── Mono-InternVL-2B-S1.2/
-└── Mono-InternVL-2B-S1.3/
+├── Mono-InternVL-2B-S1-1/
+├── Mono-InternVL-2B-S1-2/
+└── Mono-InternVL-2B-S1-3/
 ```
 </details>
 
 <details>
 <summary>Training</summary>
 
-You can use 8 GPUs to finetune the model, and it will take approximately 12 hours.
+Finetuning takes around 12 hours on 8x A100 (80G) GPUs.
+Before training, set the "model_path_or_name" parameter in the script to your model path, such as "workdirs/Mono-InternVL-2B-S1-3".
 
 #### Single Node Multi-GPU
 ```sh
-sh shell/mono_internvl_finetune_llava_torchrun.sh
+MODEL="./workdirs/Mono-InternVL-2B-S1-3" OUTPUT_DIR="./workdirs/mono_internvl_llava_sft" sh shell/mono_internvl_finetune_llava_torchrun.sh
 ```
 
 #### Slurm Cluster
 ```sh
-PARTITION='your partition' sh shell/mono_internvl_finetune_llava_slurm.sh
+PARTITION="your partition" MODEL="./workdirs/Mono-InternVL-2B-S1-3" OUTPUT_DIR="./workdirs/mono_internvl_llava_sft" sh shell/mono_internvl_finetune_llava_slurm.sh
 ```
 
 </details>

@@ -5,14 +5,15 @@ PER_DEVICE_BATCH_SIZE=4
 BATCH_SIZE=128                  
 GRADIENT_ACC=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS)) 
 
-OUTPUT_DIR='Path to your output directory'
+MODEL=${MODEL:-"Path to your model"}
+OUTPUT_DIR=${OUTPUT_DIR:-"Path to your output directory"}
 mkdir -p "$OUTPUT_DIR"
 
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 
 torchrun --nproc_per_node=$GPUS --master_port=29501 \
   internvl/train/internvl_chat_finetune.py \
-  --model_name_or_path "Path to your model" \
+  --model_name_or_path ${MODEL} \
   --vision_type patch \
   --conv_style "internlm2-chat" \
   --output_dir ${OUTPUT_DIR} \

@@ -11,13 +11,11 @@ BATCH_SIZE=${BATCH_SIZE:-128}
 PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-4}
 GRADIENT_ACC=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS))
 
+MODEL=${MODEL:-"Path to your model"}
+OUTPUT_DIR=${OUTPUT_DIR:-"Path to your output directory"}
+mkdir -p "$OUTPUT_DIR"
+
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
-
-OUTPUT_DIR='Path to your output directory'
-
-if [ ! -d "$OUTPUT_DIR" ]; then
-  mkdir -p "$OUTPUT_DIR"
-fi
 
 srun -p ${PARTITION} \
   --gres=gpu:${GPUS_PER_NODE} \
@@ -29,7 +27,7 @@ srun -p ${PARTITION} \
   --quotatype=${QUOTA_TYPE} \
   ${SRUN_ARGS} \
   python -u internvl/train/internvl_chat_finetune.py \
-  --model_name_or_path "Path to your model" \
+  --model_name_or_path ${MODEL} \
   --vision_type patch \
   --conv_style "internlm2-chat" \
   --output_dir ${OUTPUT_DIR} \
