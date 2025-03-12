@@ -1,6 +1,6 @@
 # Mono-InternVL: Pushing the Boundaries of Monolithic Multimodal Large Language Models with Endogenous Visual Pre-training
 
-[[⭐️Project Page]](https://internvl.github.io/blog/2024-10-10-Mono-InternVL/) [[🤗 Models]](https://huggingface.co/collections/OpenGVLab/mono-internvl-6707cb402afb22f1e29f4d2b) [[📜 Mono-InternVL Paper]](https://arxiv.org/abs/2410.08202) [[📝 Chinese Post]](https://mp.weixin.qq.com/s/FmjG0Gp5ow7mm2Vzd9ppPg)
+ [[📜 Paper]](https://arxiv.org/abs/2410.08202) [[⭐️Project Page]](https://internvl.github.io/blog/2024-10-10-Mono-InternVL/) [[🤗 Model]](https://huggingface.co/collections/OpenGVLab/mono-internvl-6707cb402afb22f1e29f4d2b) [[📝 Chinese Post]](https://mp.weixin.qq.com/s/FmjG0Gp5ow7mm2Vzd9ppPg)
 
 <a id="radar"></a>
 
@@ -11,7 +11,7 @@
 </p>
 
 ## 📰 News
-- **2025.3**: We release the SFT code on LLaVA-v1.5-mix665k dataset.
+- **2025.3**: We release the SFT code on LLaVA-v1.5-mix665k dataset. We also release the [258M synthetic data](https://huggingface.co/datasets/OpenGVLab/Mono-InternVL-2B-Synthetic-Data) used in S1.2 to boost future research.
 - **2025.2**: 🎉🎉 Mono-InternVL is accepted by **CVPR 2025**.
 - **2024.11**: Mono-InternVL is supported by [lmdeploy](https://github.com/InternLM/lmdeploy/pull/2727).
 - **2024.11**: Mono-InternVL is supported by [vllm](https://github.com/vllm-project/vllm/pull/9528).
