@@ -318,7 +318,6 @@ workdirs/
 <summary>Training</summary>
 
 Finetuning takes around 12 hours on 8x A100 (80G) GPUs.
-Before training, set the "model_path_or_name" parameter in the script to your model path, such as "workdirs/Mono-InternVL-2B-S1-3".
 
 #### Single Node Multi-GPU
 ```sh
