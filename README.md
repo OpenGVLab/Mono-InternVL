@@ -6,7 +6,8 @@
 
 <p align="center">
 <img src="images/fig1.jpg" alt="radar chart" style="width: 100%; height: auto;" />
-
+<br>
+<br>
 <img src="images/fig2.jpg" alt="architecture" style="width: 100%; height: auto;" />
 </p>
 
@@ -250,16 +251,17 @@ Currently we provide the supervised finetuning (S2 instruction tuning) code on t
 </details>
 
 <details>
-<summary>Training Dataset Preparation</summary>
+<summary>Dataset Preparation</summary>
 
+#### LLaVA-v1.5-mix665k Dataset
 
-1. Download instruction tuning data:
+1. Download the instruction tuning data:
 ```sh
 mkdir playground
 wget https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/resolve/main/llava_v1_5_mix665k.json -P playground/
 ```
 
-1. Download image datasets:
+2. Download image datasets:
 
 - COCO: [train2017](http://images.cocodataset.org/zips/train2017.zip)
 - GQA: [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip)
@@ -267,7 +269,7 @@ wget https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/resolve/main
 - TextVQA: [train_val_images](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip)
 - VisualGenome: [part1](https://cs.stanford.edu/people/rak248/VG_100K_2/images.zip), [part2](https://cs.stanford.edu/people/rak248/VG_100K_2/images2.zip)
   
-Organize the data as follows:
+3. Organize data as follows:
 
 ```none
 playground/
@@ -281,6 +283,51 @@ playground/
 │       └── VG_100K_2/
 └── llava_v1_5_mix665k.json
 ```
+
+#### Custom Dataset
+
+For custom dataset, format your data in to a JSONL file, where each entry is a dictionary organized in the following format (similar to `llava_v1_5_mix665k.json`):
+
+```python
+{
+    "id": "000000120375",
+    "image": "coco/train2017/000000120375.jpg",
+    "conversations": [
+        {
+            "from": "human",
+            "value": "<image>\nWhat type of vehicle is driving down the street in the image?"
+        },
+        {
+            "from": "gpt",
+            "value": "A red sports utility vehicle (SUV) is driving down the street in the image."
+        },
+        {
+            "from": "human",
+            "value": "Is the street crowded with people?"
+        },
+        {
+            "from": "gpt",
+            "value": "Yes, the street is filled with a considerable number of people, which indicates that the area is busy."
+        }
+        # (more turns ...)
+    ]
+}
+```
+
+Then modify the metadata file `shell/data_llava_finetune.json`:
+
+```python
+{
+  "name of your dataset": {
+    "root": "playground/data/", # combination of "root" and "image" in the JSONL gives the complete image path
+    "annotation": "path to your JSONL",
+    "data_augment": false,
+    "repeat_time": 1,
+    "length": 12345 # change to the actual number of samples in your dataset
+  }
+}
+```
+
 </details>
 
 <details>
