@@ -13,7 +13,7 @@
 
 ## 📰 News
 - **2025.3**: We release the SFT code on LLaVA-v1.5-mix665k dataset. We also release the [258M synthetic data](https://huggingface.co/datasets/OpenGVLab/Mono-InternVL-2B-Synthetic-Data) used in S1.2 to boost future research.
-- **2025.2**: 🎉🎉 Mono-InternVL is accepted by **CVPR 2025**.
+- **2025.2**: 🎉🎉 Mono-InternVL is accepted by **CVPR 2025**. Also check out our [**SynerGen-VL**](https://huggingface.co/papers/2412.09604) (CVPR 2025) that extends the monolithic structure to unified image generation and multimodal understanding, which will be open-sourced soon.
 - **2024.11**: Mono-InternVL is supported by [lmdeploy](https://github.com/InternLM/lmdeploy/pull/2727).
 - **2024.11**: Mono-InternVL is supported by [vllm](https://github.com/vllm-project/vllm/pull/9528).
 
