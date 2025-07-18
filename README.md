@@ -1,6 +1,6 @@
 # Mono-InternVL: Pushing the Boundaries of Monolithic Multimodal Large Language Models with Endogenous Visual Pre-training
 
- [[📜 Paper]](https://arxiv.org/abs/2410.08202) [[⭐️Project Page]](https://internvl.github.io/blog/2024-10-10-Mono-InternVL/) [[🤗 Model]](https://huggingface.co/collections/OpenGVLab/mono-internvl-6707cb402afb22f1e29f4d2b) [[📝 Chinese Post]](https://mp.weixin.qq.com/s/FmjG0Gp5ow7mm2Vzd9ppPg)
+ [[📜 V1 Paper]](https://arxiv.org/abs/2410.08202) [[📜 V1.5 Paper]](https://arxiv.org/abs/2507.12566) [[⭐️Project Page]](https://internvl.github.io/blog/2024-10-10-Mono-InternVL/) [[🤗 Model]](https://huggingface.co/collections/OpenGVLab/mono-internvl-6707cb402afb22f1e29f4d2b) [[📝 Chinese Post]](https://mp.weixin.qq.com/s/FmjG0Gp5ow7mm2Vzd9ppPg)
 
 <a id="radar"></a>
 
@@ -12,6 +12,7 @@
 </p>
 
 ## 📰 News
+- **2025.7**: We introduce [**Mono-InternVL-1.5**](https://arxiv.org/abs/2507.12566), a cheaper and faster monolithic MLLM with visual attention experts, improved training strategy (EViP++) and fused cuda kernel for multimodal MoE.
 - **2025.3**: We release the SFT code on LLaVA-v1.5-mix665k dataset. We also release the [258M synthetic data](https://huggingface.co/datasets/OpenGVLab/Mono-InternVL-2B-Synthetic-Data) used in S1.2 to boost future research.
 - **2025.2**: 🎉🎉 Mono-InternVL is accepted by **CVPR 2025**. Also check out our [**SynerGen-VL**](https://huggingface.co/papers/2412.09604) (CVPR 2025) that extends the monolithic structure to unified image generation and multimodal understanding, which will be open-sourced soon.
 - **2024.11**: Mono-InternVL is supported by [lmdeploy](https://github.com/InternLM/lmdeploy/pull/2727).
@@ -388,10 +389,17 @@ This project is released under the [MIT License](LICENSE).
 If you find this work helpful in your research, please consider giving this repo a star ⭐ and citing our paper:
 
 ```bibtex
-@article{luo2024mono,
+@article{mono_internvl_v1,
   title={Mono-InternVL: Pushing the Boundaries of Monolithic Multimodal Large Language Models with Endogenous Visual Pre-training},
   author={Luo, Gen and Yang, Xue and Dou, Wenhan and Wang, Zhaokai and Liu, Jiawen and Dai, Jifeng and Qiao, Yu and Zhu, Xizhou},
   journal={arXiv preprint arXiv:2410.08202},
   year={2024}
+}
+
+@article{mono_internvl_v1.5,
+  title={Mono-InternVL-1.5: Towards Cheaper and Faster Monolithic Multimodal Large Language Models},
+  author={Luo, Gen and Dou, Wenhan and Li, Wenhao and Wang, Zhaokai and Yang, Xue and Tian, Changyao and Li, Hao and Wang, Weiyun and Wang, Wenhai and Zhu, Xizhou and Qiao, Yu and Dai, Jifeng},
+  journal={arXiv preprint arXiv:2507.12566},
+  year={2025}
 }
 ```
